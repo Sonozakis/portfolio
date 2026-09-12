@@ -1,0 +1,842 @@
+/**************/
+/* CSS REMEDY */
+/**************/
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-decoration: none;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+button {
+	cursor: pointer;
+	font: inherit;
+	background: none;
+	border: none;
+}
+
+
+
+/*************/
+/* FONT FACE */
+/*************/
+/* Bodoni 72 Book Italic — used for every heading on the site */
+@font-face {
+	font-family: "Bodoni 72 Book";
+	src: url("fonts/bodoni-72-book-italic.woff2") format("woff2"),
+		url("fonts/bodoni-72-book-italic.woff") format("woff");
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+}
+
+
+
+/*********************/
+/* CUSTOM PROPERTIES */
+/*********************/
+:root {
+	--background-color: #efede7;
+	--ink-color: #141414;
+	--line-color-soft: rgba(20, 20, 20, 0.18);
+	--placeholder-color: #dad9d5;
+	--font-display: "Bodoni 72", "Bodoni 72 Book", "Libre Bodoni", "Didot", serif;
+	--font-body: "Georgia", "Times New Roman", serif;
+}
+
+
+
+/***********/
+/* GENERAL */
+/***********/
+body {
+	background-color: var(--background-color);
+	color: var(--ink-color);
+	font-family: var(--font-body);
+	font-size: 1.25rem;
+	line-height: 1.6;
+}
+
+a {
+	color: inherit;
+}
+
+hr {
+	border: none;
+	border-top: 0.0625rem solid var(--line-color-soft);
+}
+
+/* Italic display heading style, used on every section title */
+.display {
+	font-family: var(--font-display);
+	font-style: italic;
+	font-weight: 400;
+}
+
+/* Shared max-width container */
+.wrap {
+	max-width: 73.75rem;
+	margin: 0 auto;
+	padding: 0 2.5rem;
+}
+
+@media (max-width: 40rem) {
+	.wrap {
+		padding: 0 1.375rem;
+	}
+}
+
+section {
+	position: relative;
+}
+
+/* Every main section fills at least the full screen */
+.section-full {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 8.75rem 0 5.625rem;
+}
+
+
+
+/**********/
+/* HEADER */
+/**********/
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	background-color: rgba(239, 237, 231, 0.92);
+	backdrop-filter: blur(0.25rem);
+	border-bottom: 0.0625rem solid var(--line-color-soft);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 3rem;
+}
+
+nav a {
+	font-size: 0.9375rem;
+	letter-spacing: 0.04em;
+	padding-bottom: 0.125rem;
+	border-bottom: 0.0625rem solid transparent;
+	transition: border-color 0.2s;
+}
+
+nav a:hover {
+	border-color: var(--ink-color);
+}
+
+@media (max-width: 40rem) {
+	nav {
+		padding: 1.125rem 1.375rem;
+	}
+
+	nav a {
+		font-size: 0.8125rem;
+	}
+}
+
+
+
+/********/
+/* HOME */
+/********/
+#home {
+	align-items: center;
+	overflow: hidden;
+}
+
+/* Bordered box around the title */
+.hero-box {
+	border: 0.0625rem solid var(--ink-color);
+	padding: 3.5rem 4.5rem 2.5rem;
+	text-align: center;
+	position: relative;
+	background-color: var(--background-color);
+	z-index: 2;
+}
+
+.hero-box h1 {
+	font-size: 8rem;
+	line-height: 1;
+}
+
+@media (max-width: 68.75rem) {
+	.hero-box h1 {
+		font-size: 5.5rem;
+	}
+}
+
+@media (max-width: 40rem) {
+	.hero-box h1 {
+		font-size: 3.5rem;
+	}
+
+	.hero-box {
+		padding: 2.375rem 1.625rem 1.75rem;
+	}
+}
+
+.hero-box .subtitle {
+	font-size: 0.9375rem;
+	letter-spacing: 0.03em;
+	margin-top: 1.375rem;
+}
+
+/* Decorative line-art illustrations in the corners */
+.bg-illustration {
+	position: absolute;
+	pointer-events: none;
+	z-index: 1;
+	height: auto;
+}
+
+.bg-right {
+	top: 0;
+	right: 0;
+	width: min(34vw, 35rem);
+}
+
+.bg-left {
+	bottom: 0;
+	left: 0;
+	width: min(34vw, 26.25rem);
+}
+
+@media (max-width: 56.25rem) {
+	.bg-right,
+	.bg-left {
+		width: 44vw;
+	}
+}
+
+@media (max-width: 40rem) {
+	.bg-illustration {
+		display: none;
+	}
+}
+
+/*********/
+/* ABOUT */
+/*********/
+#about {
+	padding-top: 7.5rem;
+}
+
+.about-grid {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	gap: 2.1875rem;
+	padding-bottom: 3.5rem;
+}
+
+/* Vertical rule between the about and experience columns.
+   No extra styling needed — CSS Grid's default alignment (stretch) already
+   makes both columns and this divider the same height automatically. */
+.about-divider {
+	width: 0.0625rem;
+	background-color: var(--line-color-soft);
+}
+
+/* If experience ends up shorter than the left column, space the entries
+   out evenly to fill the matched height instead of leaving a blank gap
+   at the bottom. Has no effect when there's enough content to fill it. */
+.about-right {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+/* Heading and CV button sit on one row */
+.experience-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.experience-header h2 {
+	margin-bottom: 0;
+}
+
+.cv-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.625rem 1.25rem;
+	background-color: var(--ink-color);
+	color: var(--background-color);
+	border: 0.0625rem solid var(--ink-color);
+	font-family: var(--font-body);
+	font-size: 0.875rem;
+	letter-spacing: 0.03em;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.cv-button:hover {
+	background-color: transparent;
+	color: var(--ink-color);
+}
+
+@media (max-width: 51.25rem) {
+	.about-grid {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+
+	/* Vertical rule becomes a horizontal one, sitting between the stacked columns */
+	.about-divider {
+		width: 100%;
+		height: 0.0625rem;
+	}
+}
+
+/* Photo lines up flush with the text below it. Icons overhang the left edge
+   on purpose, as a small callout, instead of pushing the photo inward. */
+.photo-row {
+	position: relative;
+	margin-bottom: 2.125rem;
+}
+
+/* Phone-only row: mail, LinkedIn and CV button above the photo.
+   Hidden by default — only shown under the 40rem phone breakpoint below. */
+.mobile-contact-row {
+	display: none;
+}
+
+.social-icons.social-icons-mobile {
+	position: static;
+	top: auto;
+	left: auto;
+	flex-direction: row;
+}
+
+.social-icons {
+	position: absolute;
+	top: 0;
+	left: -2.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.625rem;
+}
+
+.social-icons a {
+	width: 2rem;
+	height: 2rem;
+	border: 0.0625rem solid var(--ink-color);
+	background-color: var(--background-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.social-icons a:hover {
+	background-color: var(--ink-color);
+	color: var(--background-color);
+}
+
+.social-icons svg {
+	width: 1rem;
+	height: 1rem;
+	fill: currentColor;
+}
+
+/* Profile photo, shown uncropped, flush with the text column */
+.photo {
+	width: 100%;
+	height: auto;
+	display: block;
+	filter: grayscale(0.15);
+}
+
+@media (max-width: 40rem) {
+	/* Photo overhang icons and the desktop CV button hand off to
+	   .mobile-contact-row (icons + CV button stacked above the photo) */
+	.photo-row .social-icons {
+		display: none;
+	}
+
+	.experience-header .cv-button {
+		display: none;
+	}
+
+	.mobile-contact-row {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1.375rem;
+	}
+}
+
+.heading-italic {
+	font-size: 2rem;
+	margin-bottom: 0.875rem;
+}
+
+.about-left p {
+	margin-bottom: 0.875rem;
+	max-width: 28.75rem;
+}
+
+.about-left hr {
+	margin: 2rem 0;
+}
+
+/* Education entry */
+.edu-entry .program {
+	font-weight: 600;
+}
+
+.edu-entry .dates {
+	font-family: var(--font-body);
+	font-style: italic;
+	margin-bottom: 0.5rem;
+	display: block;
+}
+
+.edu-entry ul {
+	list-style: disc;
+	padding-left: 1.25rem;
+	font-style: italic;
+	font-size: 0.9375rem;
+	color: #3a3a3a;
+}
+
+.edu-entry ul li {
+	margin-bottom: 0.125rem;
+}
+
+/* Experience entries */
+.exp-entry {
+	margin-bottom: 1.875rem;
+}
+
+.exp-entry .company {
+	display: block;
+}
+
+.exp-entry .role {
+	font-weight: 600;
+}
+
+.exp-entry .dates {
+	font-family: var(--font-body);
+	font-style: italic;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.exp-entry ul {
+	list-style: disc;
+	padding-left: 1.25rem;
+	font-style: italic;
+	font-size: 0.9375rem;
+	color: #3a3a3a;
+}
+
+.exp-entry ul li {
+	margin-bottom: 0.125rem;
+}
+
+/* Skills row */
+.skills-heading {
+	margin-top: 0.625rem;
+}
+
+.skills-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 1.25rem;
+	padding-bottom: 4.375rem;
+}
+
+.skills-row .badge {
+	width: 3.75rem;
+	height: 3.75rem;
+}
+
+/* Text badges for skills that don't have a single recognizable icon (HTML, CSS, JS). */
+.badge-text {
+	height: 3.75rem;
+	padding: 0 1.25rem;
+	background-color: var(--ink-color);
+	color: var(--background-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-body);
+	font-weight: 600;
+	font-size: 1rem;
+	letter-spacing: 0.03em;
+}
+
+/* Tool icons, reused in the work section too */
+.badge {
+	width: 2.75rem;
+	height: 2.75rem;
+	object-fit: contain;
+	display: block;
+}
+
+
+
+/********/
+/* WORK */
+/********/
+#work {
+	padding-top: 7.5rem;
+}
+
+/* work-heading and the carousel are flex siblings, so margins here don't collapse
+   the way contact's heading/form do (normal block flow) — this value is applied
+   directly, and 1.875rem happens to equal contact's collapsed gap (30px). */
+.work-heading {
+	margin-bottom: 1.875rem;
+}
+
+/* Each project fills the full screen */
+.work-item {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-top: 3.75rem;
+	padding-bottom: 3.75rem;
+}
+
+/* Only the first project — smaller gap under the "work" heading above it */
+.work-item-first {
+	padding-top: 1rem;
+}
+
+/* Divider between projects — a real <hr> inside the padded content area,
+   so it lines up with every other divider on the site (they all stop short
+   of the .wrap side padding, instead of running through it like a
+   border on .work-item itself would). */
+.work-divider {
+	margin-top: 3.75rem;
+}
+
+/* Image carousel */
+.carousel {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background-color: var(--placeholder-color);
+	overflow: hidden;
+	margin-bottom: 1.875rem;
+}
+
+/* Single-video projects (no carousel needed) — fills the same box the
+   image carousels use, so Moolaah/Artis stay visually consistent with
+   the other projects. */
+.project-video {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+/* Artis only — its source footage doesn't fill a 16:9 frame edge to edge,
+   so it gets letterboxed on black instead of cropped like Moolaah's does. */
+.carousel-video {
+	background-color: #000000;
+}
+
+.carousel-video .project-video {
+	object-fit: contain;
+}
+
+.carousel-track {
+	display: flex;
+	height: 100%;
+	transition: transform 0.45s ease;
+}
+
+.carousel-slide {
+	min-width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+/* Prev / next arrows */
+.carousel-arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 2.375rem;
+	height: 2.375rem;
+	border: 0.0625rem solid var(--ink-color);
+	background-color: var(--ink-color);
+	color: var(--background-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: var(--font-display);
+	font-size: 1.125rem;
+	user-select: none;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.carousel-arrow:hover {
+	background-color: var(--background-color);
+	color: var(--ink-color);
+}
+
+.carousel-arrow.prev {
+	left: 0.875rem;
+}
+
+.carousel-arrow.next {
+	right: 0.875rem;
+}
+
+/* Dot indicators */
+.carousel-dots {
+	position: absolute;
+	bottom: 0.75rem;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.carousel-dot {
+	width: 0.4375rem;
+	height: 0.4375rem;
+	border-radius: 50%;
+	border: 0.0625rem solid var(--ink-color);
+	background-color: transparent;
+	padding: 0;
+}
+
+.carousel-dot.active {
+	background-color: var(--ink-color);
+}
+
+/* Title and year */
+.work-title-row {
+	display: flex;
+	align-items: baseline;
+	gap: 1rem;
+	margin-bottom: 1.375rem;
+	flex-wrap: wrap;
+}
+
+.work-title-row h3 {
+	font-family: var(--font-body);
+	font-weight: 600;
+	font-size: 1.625rem;
+}
+
+.work-title-row .year {
+	font-family: var(--font-body)
+}
+
+/* Assignment / result columns */
+.work-columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3.125rem;
+	margin-bottom: 1.5rem;
+}
+
+@media (max-width: 47.5rem) {
+	.work-columns {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+}
+
+.work-columns h4 {
+	font-weight: 600;
+	margin-bottom: 0.375rem;
+	font-size: 0.9375rem;
+}
+
+.work-columns p {
+	font-size: 0.96875rem;
+	color: #2c2c2c;
+}
+
+/* Gap between multiple <p> tags when a result/assignment is split into
+   several paragraphs — no effect when there's only a single <p> */
+.work-columns p + p {
+	margin-top: 0.875rem;
+}
+
+/* Reference links inside assignment/result text (e.g. "the prototype can
+   be found here") — same size and color as the surrounding paragraph,
+   underlined so it still reads clearly as a link. Reuse this pattern for
+   any project: just add <a href="...">text</a> after the last <p>. */
+.work-columns a {
+	display: inline-block;
+	font-size: 0.96875rem;
+	color: #2c2c2c;
+	text-decoration: underline;
+	text-underline-offset: 0.1875rem;
+}
+
+.work-columns p + a {
+	margin-top: 0.875rem;
+}
+
+/* Made with badges */
+.made-with {
+	display: flex;
+	align-items: center;
+	gap: 0.875rem;
+	flex-wrap: wrap;
+	margin-bottom: 1.625rem;
+}
+
+.made-with span {
+	font-weight: 600;
+	font-size: 0.875rem;
+}
+
+.made-with .badge {
+	width: 2.25rem;
+	height: 2.25rem;
+}
+
+
+
+/***********/
+/* CONTACT */
+/***********/
+#contact {
+	align-items: flex-start;
+}
+
+.contact-inner {
+	width: 100%;
+	max-width: 32.5rem;
+}
+
+.contact-form {
+	margin-top: 1.875rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.125rem;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.375rem;
+}
+
+.field label {
+	font-size: 0.8125rem;
+	letter-spacing: 0.03em;
+	color: #3a3a3a;
+}
+
+.field input,
+.field textarea {
+	background-color: transparent;
+	border: none;
+	border-bottom: 0.0625rem solid var(--ink-color);
+	font-family: var(--font-body);
+	font-size: 1rem;
+	color: var(--ink-color);
+	padding: 0.5rem 0.125rem;
+	resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+	outline: none;
+	border-bottom-width: 0.125rem;
+}
+
+.field textarea {
+	min-height: 6.875rem;
+}
+
+/* Submit button */
+.submit-btn {
+	align-self: flex-start;
+	margin-top: 0.5rem;
+	background-color: var(--ink-color);
+	color: var(--background-color);
+	border: 0.0625rem solid var(--ink-color);
+	padding: 0.75rem 1.625rem;
+	font-family: var(--font-body);
+	font-size: 0.9375rem;
+	letter-spacing: 0.03em;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.submit-btn:hover {
+	background-color: transparent;
+	color: var(--ink-color);
+}
+
+.submit-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+/* Inline success/error message after submitting the contact form */
+.form-status {
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+	min-height: 1.2em;
+}
+
+.form-status-success {
+	color: #2f6b3a;
+}
+
+.form-status-error {
+	color: #a3372b;
+}
+
+/* Direct email / LinkedIn links below the form */
+.contact-direct {
+	margin-top: 2.875rem;
+	font-size: 0.9375rem;
+}
+
+.contact-direct div {
+	margin-bottom: 0.5rem;
+}
+
+.contact-direct a {
+	text-decoration: underline;
+	text-underline-offset: 0.1875rem;
+}
+
+
+
+/**********/
+/* FOOTER */
+/**********/
+footer {
+	text-align: center;
+	font-size: 0.75rem;
+	color: #8c8b86;
+	padding: 1rem 1.875rem;
+	border-top: 0.0625rem solid var(--line-color-soft);
+}
